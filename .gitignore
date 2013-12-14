@@ -1,0 +1,6 @@
+/vendor
+composer.lock
+/.vagrant
+/setup/vg_recipes
+.tags
+.tags_sorted_by_file
