@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://10.0.0.200',
+	'url' => 'http://10.0.0.100',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -106,6 +106,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Indatus\ActiveResource\ActiveResourceServiceProvider',
 
 	),
 

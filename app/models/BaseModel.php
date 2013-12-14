@@ -1,5 +1,6 @@
 <?php
 
+
 class BaseModel extends ActiveResource
 {
 
@@ -10,3 +11,4 @@ class BaseModel extends ActiveResource
 }
 
 BaseModel::$baseUri = Config::get('app.url');
+BaseModel::$scratchDiskLocation = implode('/', array(__DIR__, '..', 'storage', 'meta'));
