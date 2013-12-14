@@ -15,6 +15,16 @@ class UsersController extends BaseController {
 		return View::make('users.index', compact('users'));
 	}
 
+	public function create()
+	{
+
+	}
+
+	public function store()
+	{
+
+	}
+
 
 
 	public function show($id)
@@ -37,16 +47,22 @@ class UsersController extends BaseController {
 	public function update($id)
 	{
 		$user = $this->user->find($id);
-
+		
 		if(! $user) {
 
 			throw new ModelNotFoundException;
 		}
 
 		$user->updateAttributes(Input::all());
+		$user->id = $id;
 		
-		$user->save();
-		pp($user);
+		if($user->save()) {
+			return Redirect::route('users.show', $id);	
+		} else {
+			pp($user);
+			return Redirect::route('users.edit', $id)->withErrors();
+		}
+		
 
 
 	}
