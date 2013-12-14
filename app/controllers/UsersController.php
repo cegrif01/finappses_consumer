@@ -10,10 +10,9 @@ class UsersController extends BaseController {
 
 	public function index()
 	{
-		pp($this->user);
-		$users = $this->user->all();
+		$users = $this->user->findAll();
 
-		pp($users);
+		return Response::json($users);
 	}
 
 }
