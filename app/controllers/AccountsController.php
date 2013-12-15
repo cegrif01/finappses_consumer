@@ -12,11 +12,15 @@ class AccountsController extends BaseController
     public function account_overview($id)
     {
 
-        $user = $this->user->find($id);
-        pp($user);
-        $transactions = Transaction::where('user_id', '=', $user->id)->orderBy('purchase_date', 'DESC')->paginate(self::PAGINATION_VALUE);
-        
-        return View::make('users.account_overview', compact('transactions', 'user'));
+        $request = BaseModel::rawGet("/v1/users/$id/account_overview");
+        pp($request);
+        $errors = $request->errors();
+
+        if(empty($errors)) {
+            
+            $user = (object) $request->response();
+            return View::make('users.account_overview', compact('transactions', 'user'));
+        }
     }
     
 
