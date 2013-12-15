@@ -25,5 +25,5 @@ Route::controller('password', 'RemindersController');
 /**
  * Account Overview routes
  */
-Route::get('account_overview/{id}', ['as'=>'users.account_overview', 'uses'=> 'UsersController@account_overview'])->where('id', '[0-9]+');
+Route::get('account_overview/{id}', ['as'=>'users.account_overview', 'uses'=> 'AccountsController@account_overview'])->where('id', '[0-9]+');
 Route::post('account_overview/{id}',['as'=>'add_account', 'uses'=>'AccountsController@store'])->where('id', '[0-9]+');
