@@ -22,7 +22,7 @@
         </p>
 
         <p class="actions">
-            {{ Form::submit('login',['class'=>'btn btn-primary']) }}
+            {{ Form::submit('login', ['class'=>'btn btn-primary']) }}
             {{ link_to('password/remind', 'Forgot Your Password?') }}
         </p>
     
