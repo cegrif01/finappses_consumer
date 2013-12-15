@@ -15,8 +15,11 @@ class SessionsController extends BaseController {
             'password' => Input::get('password')
         );
 
-        $result = BaseModel::rawPost('authenticate', $params);
-        pp($result);
+        $user = (object) BaseModel::rawPost('authenticate', $params)->response();
+        
+        if(! empty($user)) {
+            return Redirect::route('users.show', [$user->id]);
+        }
 
     }
 
