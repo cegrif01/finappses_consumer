@@ -19,11 +19,12 @@ class SessionsController extends BaseController {
         $errors = $request->errors();
 
         if(empty($errors)) {
+            
             $user = (object) $request->response();
 
             return Redirect::route('users.account_overview', [$user->id]);
         }
-        
+
         return Redirect::route('login')->withErrors($request->errors());
 
     }
