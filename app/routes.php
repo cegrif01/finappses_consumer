@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', ['as' => 'login', 'uses' => 'SessionsController@create']);
 
 Route::resource('users', 'UsersController');
 

@@ -4,7 +4,6 @@ class SessionsController extends BaseController {
 
     public function create()
     {
-
         return View::make('sessions.create');
     }
 
@@ -15,15 +14,20 @@ class SessionsController extends BaseController {
             'password' => Input::get('password')
         );
 
-        $user = (object) BaseModel::rawPost('authenticate', $params)->response();
+        $request = BaseModel::rawPost('authenticate', $params);
         
+        $user = $request->response();
+
         if(! empty($user)) {
-            return Redirect::route('users.show', [$user->id]);
+            
+            return Redirect::route('users.show', [$user['id']]);
         }
+
+        return Redirect::route('login')->withErrors($request->errors());
 
     }
 
-    public function destroy($id)
+    public function destroy()
     {
         Session::flush();
         return Redirect::route('login');
