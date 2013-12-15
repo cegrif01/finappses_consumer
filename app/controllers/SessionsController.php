@@ -16,13 +16,14 @@ class SessionsController extends BaseController {
 
         $request = BaseModel::rawPost('authenticate', $params);
         
-        $user = $request->response();
+        $errors = $request->errors();
 
-        if(! empty($user)) {
-            
-            return Redirect::route('users.show', [$user['id']]);
+        if(empty($errors)) {
+            $user = (object) $request->response();
+
+            return Redirect::route('users.account_overview', [$user->id]);
         }
-
+        
         return Redirect::route('login')->withErrors($request->errors());
 
     }
