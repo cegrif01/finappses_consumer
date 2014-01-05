@@ -11,7 +11,7 @@ class UsersController extends BaseController {
 	public function index()
 	{
 		$users = $this->user->findAll();
-		
+		pp($users);
 		return View::make('users.index', compact('users'));
 	}
 
