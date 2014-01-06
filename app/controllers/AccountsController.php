@@ -10,14 +10,9 @@ class AccountsController extends BaseController
 
     }
 
-    public function account_overview($id)
+    public function add_account()
     {
-        $user = BaseModel::rawGet("/v1/users/$id?transactions=true&accounts=true")->response()['collection'];
-        
-        $user = $this->objectify($user, ['transactions', 'accounts']);
-        pp($user);
-
-        return View::make('users.account_overview', compact('user'));
+        pp(Input::all());
     }
     
 

@@ -1,8 +1,8 @@
 
     
-    @if( sizeof($transactions)== 0)
+    {{--@if( sizeof($transactions)== 0)
         There are no transactions, you should add some transactions
-    @else
+    @else--}}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -15,15 +15,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($transactions as $transaction_array)
-                {{pp($transaction_array)}}
-                @foreach( $transaction_array as $key => $transaction)
-                    
+            @foreach($user->accounts as $account)
+                @foreach($account->transactions as $transaction)
                     <tr>
                         <td>{{ $transaction->description }}</td>
                         <td>{{ $transaction->purchase_date}}</td>
                         <td>{{ $transaction->amount}}</td>
-                        <td>{{ $transaction->account->name }}</td>
+                        <td>{{ $account->name }}</td>
 
                         <td>{{ HTML::link(URL::to('transactions/'.$transaction->id.'/edit'), 'Update', ['class'=>'edit_transaction']) }}</td>
 
@@ -37,5 +35,5 @@
 
         </tbody>
     </table>
-    {{ $user->transactions->links() }}
-    @endif
+    {{-- $user->transactions->links() --}}
+    {{--@endif--}}
