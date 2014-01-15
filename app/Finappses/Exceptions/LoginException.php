@@ -1,4 +1,4 @@
-<?php namespace Finappses\Exceptions\LoginException;
+<?php namespace Finappses\Exceptions;
 
 use Exception;
 

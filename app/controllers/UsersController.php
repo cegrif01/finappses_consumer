@@ -2,12 +2,6 @@
 
 class UsersController extends BaseController {
 
-	public function __construct(User $user, Transaction $transaction)
-	{
-		$this->user = $user;
-		$this->transaction = $transaction;
-
-	}
 
 	public function index()
 	{

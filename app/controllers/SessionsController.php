@@ -1,6 +1,15 @@
 <?php
 
+use Finappses\FormObjects\LoginForm;
+use Finappses\Exceptions\LoginException;
+
 class SessionsController extends BaseController {
+
+    public function __construct(LoginForm $login_form)
+    {
+        $this->login_form = $login_form;
+        
+    }
 
     public function create()
     {
@@ -14,21 +23,17 @@ class SessionsController extends BaseController {
             'password' => Input::get('password')
         );
 
-        
+        try {
 
-        $request = BaseModel::rawPost('/authenticate', $params);
-        
-        $errors = $request->errors();
-
-        if(empty($errors)) {
-            
-            $user = (object) $request->response();
-
+            $user = $this->login_form->login($params);
             return Redirect::route('account_overview_get', [$user->id]);
+
+        } catch (LoginException $e) {
+
+            return Redirect::route('login')->withErrors($e->getErrors());
+
         }
-
-        return Redirect::route('login')->withErrors($request->errors());
-
+        
     }
 
     public function destroy()
