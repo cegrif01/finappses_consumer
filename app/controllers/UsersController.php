@@ -12,7 +12,7 @@ class UsersController extends BaseController {
 	public function index()
 	{
 		$users = $this->user->findAll([], null, null, null, ['includes[0]' => 'transactions', 'includes[1]' => 'accounts']);
-		pp($users);
+		
 		return View::make('users.index', compact('users'));
 	}
 
@@ -37,7 +37,7 @@ class UsersController extends BaseController {
 		
 		$transactions = $this->transaction->findAll();
 		
-		$user = json_decode($user);
+		$user = json_encode($user);
 		
 
 		return View::make('users.account_overview', compact('user', 'transactions'));

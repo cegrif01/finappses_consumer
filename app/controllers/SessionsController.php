@@ -14,7 +14,7 @@ class SessionsController extends BaseController {
             'password' => Input::get('password')
         );
 
-        $request = BaseModel::rawPost('authenticate', $params);
+        $request = BaseModel::rawPost('/authenticate', $params);
         
         $errors = $request->errors();
 
@@ -22,7 +22,7 @@ class SessionsController extends BaseController {
             
             $user = (object) $request->response();
 
-            return Redirect::route('users.account_overview', [$user->id]);
+            return Redirect::route('account_overview_get', [$user->id]);
         }
 
         return Redirect::route('login')->withErrors($request->errors());
