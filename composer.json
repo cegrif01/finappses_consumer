@@ -5,13 +5,22 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"indatus/active-resource": "dev-master"
+		"indatus/active-resource": "dev-master",
+		"nesbot/Carbon": "*"
+	},
+	"require-dev": {
+		"codeception/codeception": "1.8.*@dev",
+		"way/generators": "dev-master",
+		"mockery/mockery": "dev-master@dev",
+ 	   	"way/laravel-test-helpers": "dev-master",
+ 	   	"fzaninotto/faker": "1.3.*",
+ 	   	"phpunit/phpunit": "3.9.*@dev"
 	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
 			"app/controllers",
-			"app/models",
+			"app/Finappses",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
