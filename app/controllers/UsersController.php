@@ -1,7 +1,14 @@
 <?php
 
+use Finappses\FormObjects\AccountOverviewForm;
+
 class UsersController extends BaseController {
 
+	public function __construct(AccountOverviewForm $accounts_overview)
+	{
+
+		$this->accounts_overview = $accounts_overview;
+	}
 
 	public function index()
 	{
@@ -25,16 +32,10 @@ class UsersController extends BaseController {
 
 	public function account_overview($id)
 	{
-		$user = $this->user->find($id, ['includes[0]' => 'accounts'])->collection;
-		Transaction::$resourceName = 'Transaction';
-		Transaction::$nestedUnder = "User:$id";
-		
-		$transactions = $this->transaction->findAll();
-		
-		$user = json_encode($user);
-		
 
-		return View::make('users.account_overview', compact('user', 'transactions'));
+		$user = $this->accounts_overview->getUserFinancialData($id);
+		
+		return View::make('users.account_overview', compact('user'));
 	}
 
 

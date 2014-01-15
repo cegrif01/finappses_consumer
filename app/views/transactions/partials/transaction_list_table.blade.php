@@ -15,22 +15,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($user->accounts as $account)
-                @foreach($account->transactions as $transaction)
-                    <tr>
-                        <td>{{ $transaction->description }}</td>
-                        <td>{{ $transaction->purchase_date}}</td>
-                        <td>{{ $transaction->amount}}</td>
-                        <td>{{ $account->name }}</td>
+            @foreach($user->transactions as $transaction)
+                <tr>
+                    <td>{{ $transaction->description }}</td>
+                    <td>{{ $transaction->purchase_date}}</td>
+                    <td>{{ $transaction->amount}}</td>
+                    <td>{{ $user->accounts[$transaction->account_id -1]->name }}</td>
 
-                        <td>{{ HTML::link(URL::to('transactions/'.$transaction->id.'/edit'), 'Update', ['class'=>'edit_transaction']) }}</td>
+                    <td>{{ HTML::link(URL::to('transactions/'.$transaction->id.'/edit'), 'Update', ['class'=>'edit_transaction']) }}</td>
 
-                        {{ Form::open(['url' => 'transactions/'.$transaction->id,  'method' => 'DELETE']) }}
-                        
-                            <td>{{ Form::submit('Delete',['class'=>'btn btn-primary']) }}</td>
-                        {{ Form::close() }}
-                    </tr>
-                @endforeach
+                    {{ Form::open(['url' => 'transactions/'.$transaction->id,  'method' => 'DELETE']) }}
+                    
+                        <td>{{ Form::submit('Delete',['class'=>'btn btn-primary']) }}</td>
+                    {{ Form::close() }}
+                </tr>
+                
             @endforeach
 
         </tbody>
