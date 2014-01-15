@@ -14,6 +14,8 @@ class SessionsController extends BaseController {
             'password' => Input::get('password')
         );
 
+        
+
         $request = BaseModel::rawPost('/authenticate', $params);
         
         $errors = $request->errors();
